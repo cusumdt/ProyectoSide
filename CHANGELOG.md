@@ -7,13 +7,13 @@
 [0.0.2] - 2018-10-23
 ###Added
 	- Background Scrolling
-[0.0.3]
+[0.0.3] - 2018-10-26
 ###Added
 	- Parallax Scrolling on Background
 	- Game Over Functionality
 	- Game Over Menu
 	- Pause Functionality
 	- Placeholder Pause Menu
-##Changed
+###Changed
 	- Player Size was changed to match sprite size
 	- Obstacle and Player speed increased
