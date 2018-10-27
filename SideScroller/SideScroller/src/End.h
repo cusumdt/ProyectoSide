@@ -2,7 +2,7 @@
 #define END_H
 #include "raylib.h"
 using namespace std;
-namespace End
+namespace Game
 {
 	void EDraw();
 	void EUpdate();

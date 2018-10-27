@@ -1,7 +1,6 @@
 #include "raylib.h"
 #include "Game.h"
-using namespace Game;
-namespace End
+namespace Game
 {
 	void EDraw()
 	{

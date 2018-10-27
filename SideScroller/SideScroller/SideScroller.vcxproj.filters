@@ -24,12 +24,18 @@
     <ClCompile Include="src\Main.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+    <ClCompile Include="src\Menu.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
       <Filter>Archivos de recursos</Filter>
     </ClInclude>
     <ClInclude Include="src\End.h">
+      <Filter>Archivos de recursos</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Menu.h">
       <Filter>Archivos de recursos</Filter>
     </ClInclude>
   </ItemGroup>

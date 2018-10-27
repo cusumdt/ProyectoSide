@@ -1,5 +1,6 @@
 #include "raylib.h"
 #include "End.h"
+#include "Menu.h"
 namespace Game
 {
 	const int MENU = 1;
@@ -14,8 +15,6 @@ namespace Game
 	Vector2 ObstacleS = { 50.0f, GetRandomValue(20,200) };
 	void Obstacle();
 	void gameOver();
-	Rectangle rec1;
-	Rectangle rec2;
 	void GDraw();
 	void GUpdate();
 	void GInit();
@@ -37,7 +36,6 @@ namespace Game
 	Rectangle player = { PlayerPos.x, PlayerPos.y, (float)PlayerSize.x, (float)PlayerSize.y };
 	Rectangle obstacle = { ObstacleP.x, ObstacleP.y, (float)ObstacleS.x, (float)ObstacleS.y };
 	Vector2 position1 = { 0.0f, 0.0f };
-
 	Vector2 position3 = { -1000.0f, 0.0f };
 	Vector2 position4 = { 0.0f, 0.0f };
 	Vector2 position5 = { 1000.0f, 0.0f };
@@ -55,15 +53,16 @@ namespace Game
 			switch (currentScreen)
 			{
 			case MENU:
-				currentScreen++;
+				MUpdate();
+				MDraw();
 				break;
 			case PLAY:
 				GUpdate();
 				GDraw();
 				break;
 			case GOVER:
-				End::EDraw();
-				End::EUpdate();
+				EDraw();
+				EUpdate();
 				break;
 			}
 		}
@@ -99,6 +98,7 @@ namespace Game
 			DrawTextureRec(GroundText, Ground1, position3, WHITE);			
 			DrawRectangleV({ obstacle.x , obstacle.y }, { obstacle.width, obstacle.height }, BLACK);
 			DrawTextureRec(PCText, playeranim, PlayerPos, WHITE);
+			DrawText("Press UP to jump, ESC to pause", 5, 430, 15, BLACK);
 		}
 		else
 		{
