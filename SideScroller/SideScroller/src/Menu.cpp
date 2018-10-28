@@ -3,7 +3,7 @@
 Vector2 mousePoint;
 Rectangle rec1;
 Rectangle rec2;
-Rectangle rec3;
+bool creditScreen = false;
 namespace Game
 {
 void MUpdate()
@@ -19,15 +19,11 @@ void MUpdate()
 	rec2.height = 50;
 	rec2.width = 100;
 
-	rec3.x = screenWidth / 2 - 50;
-	rec3.y = screenHeight / 2 + 160;
-	rec3.height = 50;
-	rec3.width = 100;
 
 	if (CheckCollisionPointRec(mousePoint, rec1))
 	{
 
-		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && creditScreen==false)
 		{
 			currentScreen++;
 		}
@@ -37,7 +33,7 @@ void MUpdate()
 
 		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 		{
-			
+			creditScreen = !creditScreen;
 		}
 	}
 
@@ -46,18 +42,28 @@ void MUpdate()
 void MDraw()
 {
 	BeginDrawing();
-
-	ClearBackground(RAYWHITE);
-
-	DrawTextureRec(SkyText, Sky1, { 0,0 }, WHITE);
-	DrawRectangle(rec1.x, rec1.y, rec1.width, rec1.height, BLACK);
-	DrawRectangle(rec2.x, rec2.y, rec2.width, rec2.height, BLACK);
-	DrawRectangle(rec3.x, rec3.y, rec3.width, rec3.height, BLACK);
-	DrawText("Jugar", rec1.x + 18, rec1.y + 10, 18, WHITE);
-	DrawText("Creditos", rec2.x + 5, rec2.y + 10, 18, WHITE);
-	DrawText("Controles", rec3.x + 5, rec3.y + 10, 18, WHITE);
-	DrawText("Flappy Ship", screenWidth / 2 - 120, 100, 50, MAROON);
-
+	if (!creditScreen)
+	{
+		ClearBackground(RAYWHITE);
+		DrawTextureRec(SkyText, Sky1, { 0,0 }, WHITE);
+		DrawRectangle(rec1.x, rec1.y, rec1.width, rec1.height, BLACK);
+		DrawRectangle(rec2.x, rec2.y, rec2.width, rec2.height, BLACK);
+		DrawText("P l a y", rec1.x + 25, rec1.y + 15, 18, WHITE);
+		DrawText("C r e d i t s", rec2.x + 5, rec2.y + 15, 18, WHITE);
+		DrawText("Flappy Ship", screenWidth / 2 - 150, 100, 60, MAROON);
+		DrawText("Flappy Shipv1.0", 10, screenHeight -30, 10, WHITE);
+	}
+	else
+	{
+		DrawTextureRec(SkyText, Sky1, { 0,0 }, WHITE);
+		DrawRectangle(rec2.x, rec2.y, rec2.width, rec2.height, BLACK);
+		DrawText("B a c k", rec2.x + 15, rec2.y + 15, 18, WHITE);
+		DrawText("Made using RAYLIB", screenWidth / 2-250, 50, 30, WHITE);
+		DrawText("Art made in PISKELAPP.COM", screenWidth / 2 - 250, 100, 30, WHITE);
+		DrawText("Created by Damian Iglesias", screenWidth / 2 - 250, 150, 30, WHITE);
+		DrawText("Menu Screen by Martin Concetti", screenWidth / 2 - 250, 200, 30, WHITE);
+		DrawText("Sound made in BeepBox", screenWidth / 2 - 250, 250, 30, WHITE);
+	}
 	EndDrawing();
 }
 

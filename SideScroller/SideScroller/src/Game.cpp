@@ -28,6 +28,7 @@ namespace Game
 	Texture2D SkyText;
 	Texture2D GroundText;
 	Texture2D CloudText;
+	Rectangle recMusic = {0.0f,0.0f,60.0f,20.0f };
 	Rectangle Ground1;
 	Rectangle Ground2;
 	Rectangle Sky1;
@@ -35,16 +36,19 @@ namespace Game
 	Rectangle playeranim;
 	Rectangle player = { PlayerPos.x, PlayerPos.y, (float)PlayerSize.x, (float)PlayerSize.y };
 	Rectangle obstacle = { ObstacleP.x, ObstacleP.y, (float)ObstacleS.x, (float)ObstacleS.y };
-	Vector2 position1 = { 0.0f, 0.0f };
-	Vector2 position3 = { -1000.0f, 0.0f };
+	Vector2 position1 = { -1.0f, 0.0f };
+	Vector2 position3 = { -999.0f, 0.0f };
 	Vector2 position4 = { 0.0f, 0.0f };
 	Vector2 position5 = { 1000.0f, 0.0f };
 	Vector2 positionStatic = {0.0f, 0.0f};
+	Vector2 mouse;
 	Sound JumpSound;
+	Music music;
 	float playerAccel = 10.0f;
 	int PCFrame = 1;
 	int fpsFrame = 0;
 	int currentScreen = 1;
+	bool soundPlaying = true;
 	void GPlay()
 	{
 		GInit();
@@ -66,6 +70,7 @@ namespace Game
 				break;
 			}
 		}
+		UnloadMusicStream(music);
 		UnloadSound(JumpSound);
 		CloseAudioDevice();
 		CloseWindow();
@@ -99,6 +104,8 @@ namespace Game
 			DrawRectangleV({ obstacle.x , obstacle.y }, { obstacle.width, obstacle.height }, BLACK);
 			DrawTextureRec(PCText, playeranim, PlayerPos, WHITE);
 			DrawText("Press UP to jump, ESC to pause", 5, 430, 15, BLACK);
+			DrawRectangle(recMusic.x, recMusic.y, recMusic.width, recMusic.height, BLUE);
+			DrawText("M U T E", recMusic.x/2,recMusic.y/2,15,WHITE);
 		}
 		else
 		{
@@ -115,11 +122,23 @@ namespace Game
 
 		if (!Paused)
 		{
-			//if (IsKeyDown(KEY_UP)) PlayerPos.y -= 3.0f;
-			//if (IsKeyDown(KEY_DOWN)) PlayerPos.y += 3.0f;
+			if (soundPlaying)
+			{
+				UpdateMusicStream(music);
+				PlayMusicStream(music);
+			}
+			mouse = GetMousePosition();
+			if (CheckCollisionPointRec(mouse, recMusic))
+			{
+				if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+				{
+					soundPlaying = !soundPlaying;
+				}
+			}
 			if (IsKeyPressed(KEY_UP))
 			{
-				PlaySound(JumpSound);
+
+				if(soundPlaying)PlaySound(JumpSound);
 				playerAccel = -80.0f;
 			}
 			PlayerPos.y = PlayerPos.y + (float)playerAccel;
@@ -188,6 +207,7 @@ namespace Game
 		InitWindow(screenWidth, screenHeight, "SideScroll Practice");
 		SetTargetFPS(60);
 		InitAudioDevice();
+		music = LoadMusicStream("res/music.ogg");
 		JumpSound = LoadSound("res/jump.wav");
 		pcImage = LoadImage("res/Player.png");
 		PCText = LoadTextureFromImage(pcImage);
@@ -201,11 +221,14 @@ namespace Game
 		CloudText = LoadTextureFromImage(cloudImage);
 		Cloud1 = { 0.0f,0.0f, (float)CloudText.width, (float)CloudText.height };
 		Ground1 = { 0.0f, 0.0f, (float)GroundText.width, (float)GroundText.height };
+		
 
 		
 	}
 	void Restart()
 	{
+		StopMusicStream(music);
+		PlayMusicStream(music);
 		Obstacle();
 		PlayerPos = { 150.0f, screenHeight / 2.0f };
 		obstacle = { ObstacleP.x, ObstacleP.y, (float)ObstacleS.x, (float)ObstacleS.y };

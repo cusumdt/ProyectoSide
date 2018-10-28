@@ -8,13 +8,13 @@ namespace Game
 		ClearBackground(RAYWHITE);
 		DrawTextureRec(SkyText, Sky1, {0,0}, WHITE);
 		DrawText("YOU LOSE", screenWidth/4, screenHeight/3, 50, WHITE);
-		DrawText("ENTER TO EXIT", screenWidth / 4, screenHeight / 3+60, 50, WHITE);
+		DrawText("ENTER TO GO TO MENU", screenWidth / 4, screenHeight / 3+60, 50, WHITE);
 		DrawText("SPACE TO RESTART", screenWidth / 4, screenHeight / 3+120, 50, WHITE);
 		EndDrawing();
 	}
 	void EUpdate()
 	{
-		if (IsKeyDown(KEY_ENTER))
+		if (IsKeyDown(KEY_ESCAPE))
 		{
 			gameover = true;
 		}
@@ -22,6 +22,10 @@ namespace Game
 		{
 			Game::Restart();
 			currentScreen--;
+		}
+		if (IsKeyDown(KEY_ENTER))
+		{
+			currentScreen = 1;
 		}
 	}
 };
