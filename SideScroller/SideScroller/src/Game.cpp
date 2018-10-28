@@ -57,10 +57,12 @@ namespace Game
 			switch (currentScreen)
 			{
 			case MENU:
+				SetExitKey(KEY_ESCAPE);
 				MUpdate();
 				MDraw();
 				break;
 			case PLAY:
+				SetExitKey(KEY_F12);
 				GUpdate();
 				GDraw();
 				break;
@@ -145,7 +147,7 @@ namespace Game
 			playerAccel = +130*GetFrameTime();
 			if (IsKeyPressed(KEY_ESCAPE)) 
 			{ 
-				SetExitKey(KEY_ESCAPE);
+				
 				Paused = true; 
 			}
 			if (PlayerPos.y > (screenHeight - PlayerSize.y))
@@ -194,6 +196,10 @@ namespace Game
 		}
 		else
 		{
+			if (IsKeyPressed(KEY_ESCAPE))
+			{
+				currentScreen--;
+			}
 			if (IsKeyPressed(KEY_SPACE))
 			{
 				SetExitKey(KEY_F12);
@@ -227,6 +233,7 @@ namespace Game
 	}
 	void Restart()
 	{
+		Paused = false;
 		StopMusicStream(music);
 		PlayMusicStream(music);
 		Obstacle();

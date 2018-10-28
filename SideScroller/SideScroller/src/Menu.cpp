@@ -25,6 +25,7 @@ void MUpdate()
 
 		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && creditScreen==false)
 		{
+			Restart();
 			currentScreen++;
 		}
 	}
