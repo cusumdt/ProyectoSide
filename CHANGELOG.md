@@ -1,3 +1,6 @@
+[1.0.1] - 2018-10-28
+###Fixed
+	- Fixed a bug when the player went back to main menu from pause, game will start paused
 [1.0.0] - 2018-10-28
 ###Added
 	- Credit Screen on Menu
