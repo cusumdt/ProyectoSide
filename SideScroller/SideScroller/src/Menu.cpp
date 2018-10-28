@@ -51,7 +51,7 @@ void MDraw()
 		DrawText("P l a y", rec1.x + 25, rec1.y + 15, 18, WHITE);
 		DrawText("C r e d i t s", rec2.x + 5, rec2.y + 15, 18, WHITE);
 		DrawText("Flappy Ship", screenWidth / 2 - 150, 100, 60, MAROON);
-		DrawText("Flappy Shipv1.0", 10, screenHeight -30, 10, WHITE);
+		DrawText("Flappy Shipv1.0", 10, screenHeight -15, 10, WHITE);
 	}
 	else
 	{
