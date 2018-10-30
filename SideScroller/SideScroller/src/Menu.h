@@ -4,5 +4,6 @@ namespace Game
 {
 	void MUpdate();
 	void MDraw();
+	extern bool p2;
 }
 #endif

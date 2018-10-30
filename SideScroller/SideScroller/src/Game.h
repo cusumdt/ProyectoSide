@@ -31,6 +31,7 @@ namespace Game
 	static Vector2 position2;
 	static Vector2 position3;
 	extern int currentScreen;
+	extern bool player1;
 };
 #endif
 
