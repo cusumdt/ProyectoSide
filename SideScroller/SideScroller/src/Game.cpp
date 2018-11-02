@@ -126,8 +126,12 @@ namespace Game
 			if (p2)
 			{
 				DrawTextureRec(player2Texture, player2Anim, Player2Pos, GREEN);
+				DrawText("P1 Press UP to jump, P2 Press SPACE to jump, ESC to pause", 5, 430, 15, BLACK);
 			}
-			DrawText("Press UP to jump, ESC to pause", 5, 430, 15, BLACK);
+			else
+			{
+				DrawText("Press UP to jump, ESC to pause", 5, 430, 15, BLACK);
+			}
 			DrawRectangle(recMusic.x, recMusic.y, recMusic.width, recMusic.height, BLUE);
 			DrawText("M U T E", recMusic.x / 2, recMusic.y / 2, 15, WHITE);
 		}
